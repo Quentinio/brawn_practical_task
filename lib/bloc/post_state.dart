@@ -13,12 +13,20 @@ class PostLoadingState extends PostState {
 }
 
 class PostLoadedState extends PostState {
+  final PostModel posts;
+
+  PostLoadedState(this.posts);
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [posts];
 }
 
 
-//TODO error state
+class PostErrorState extends PostState {
+  final String error;
 
+  PostErrorState(this.error);
+  @override
+  List<Object?> get props => [error];
+}
 

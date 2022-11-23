@@ -1,3 +1,4 @@
+import 'package:brawn_practical_task/api/post_api.dart';
 import 'package:brawn_practical_task/bloc/post_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => PostBloc(
+          RepositoryProvider.of<PostApi>(context),
         )..add(LoadPostEvent()),
       child: Scaffold(
         appBar: AppBar(
@@ -23,8 +25,16 @@ class Home extends StatelessWidget {
               );
             }
             if (state is PostLoadedState) {
+              return ListView.builder(
+                  itemCount: state.posts.data?.children?.length,
+                  itemBuilder: (_, index) {
+                    var post = state.posts.data?.children?[index];
+                    return Text(post!.data!.author.toString());
+                  });
+            }
+            if (state is PostErrorState) {
               return const Center(
-                child: Text('Post has loaded'),
+                child: Text('Error'),
               );
             }
             return Container();
