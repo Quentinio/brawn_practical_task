@@ -134,7 +134,7 @@ class Home extends StatelessWidget {
             }
             if (state is PostErrorState) {
               return const Center(
-                child: Text('Error'),
+                child: Text('Ups..something went wrong, try again later.'),
               );
             }
             return Container();

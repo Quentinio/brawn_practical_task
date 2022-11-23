@@ -3,7 +3,6 @@ import 'package:http/http.dart';
 import '../models/models/post_model.dart';
 
 
-
 class PostApi {
   Future<PostModel> getPosts() async {
     String endpoint = 'https://www.reddit.com/r/FlutterDev.json';
@@ -11,7 +10,7 @@ class PostApi {
     if (response.statusCode == 200) {
       return postModelFromJson(response.body);
     } else {
-      throw Exception('Failed to load posts');
+      throw Exception('Ups..something went wrong, try again later.');
     }
   }
 }
